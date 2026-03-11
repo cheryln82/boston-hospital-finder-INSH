@@ -232,8 +232,8 @@ async function findHospitals() {
   const matches = hospitals.map(h => {
     const m = (h["LOCATION"]||"").match(coordRx);
     if (!m) return null;
-    const lat = parseFloat(m[1]);
-    const lon = parseFloat(m[2]);
+    const lat = parseFloat(m[2]);
+    const lon = parseFloat(m[1]);
     return { ...h, lat, lon, dist: distMiles(coords.lat, coords.lon, lat, lon) };
   }).filter(h=>h && h.dist<=radius)
     .sort((a,b)=>a.dist-b.dist);
